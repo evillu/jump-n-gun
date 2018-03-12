@@ -1,0 +1,15 @@
+{
+  "name": "fb-webhook",
+  "version": "0.0.1",
+  "description": "Facebook webhook test app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node https-server.js"
+  },
+  "author": "Evil_Lu",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2"
+  }
+}
