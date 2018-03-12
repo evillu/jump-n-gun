@@ -14,8 +14,11 @@ var options = {
     cert: cert
 }
 
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+    ip = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+
 // Sets server port and log message on success
-https.createServer(options, app).listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
+https.createServer(options, app).listen(port, ip, () => console.log(`webhook is listening on ${ip}:${port}`));
 
 // Create the endpoint for our webhook
 app.post('/webhook', (req, res) =>
@@ -68,3 +71,8 @@ app.get('/webhook', (req, res) =>
         }
     }
 })
+
+app.get('/', (req, res) =>
+{
+    res.status(200).send('Hello!');
+});
