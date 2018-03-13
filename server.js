@@ -26,6 +26,7 @@ app.get('/', function (req, res) {
 app.post('/webhook', (req, res) =>
 {
     let body = req.body;
+    console.log('webhook: ', body);
 
     // check if this is an event from a page subscription
     if (body.object == 'page')
@@ -45,6 +46,7 @@ app.post('/webhook', (req, res) =>
             } catch (e)
             {
                 console.log('Error: ', entry);
+                return
             }
         });
 
