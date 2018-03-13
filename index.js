@@ -9,7 +9,7 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || 'localhost';
 
 // Sets server port and log message on success
-app.listen(process.env.PORT || 1337, () => console.log(`webhook is listening on ${ip}:${port}`));
+app.listen(port, ip, () => console.log(`webhook is listening on ${ip}:${port}`));
 
 // Create the endpoint for our webhook
 app.post('/webhook', (req, res) =>
