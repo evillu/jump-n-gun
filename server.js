@@ -5,7 +5,7 @@ const
     bodyParser = require('body-parser'),
     app = express().use(bodyParser.json()); // create Express HTTP server
 
-const PAGE_ACCESS_TOKEN = 'EAAV4pwnZB0GABAIpdCqRGMrmrZBFPML2R0ZCiNZAgXC6ZBZBc7ZCMJHInuejwhD1ZCHiXKwbRyob1iwTM4IavVQ5wLgdMbLFMmHiSH6ZBQWZBe1l8PnUR8ZCwuZCznqkzCEFHGCubBQZBFSZB833ZCzog2OfUkNKMP3H3o9jyS9X7wv8aKrfQZDZD';
+const PAGE_ACCESS_TOKEN = 'EAAVw6YRW4MQBAEOFa7TEIlvvG5sLwXGipRkDQ21JtUUoGewm32DptM7FSCWJE9JZCrjDEzSdeL3AzdMBoHRWNKjcQ0ILMb4hjRN97HOw8KZBFKiMvlpPXJ8jRdZA22ulkuZAInw9IubecakUI3IB8Bze0faJv0Mbd6ZCAKg6ZA5gZDZD';
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
@@ -33,13 +33,19 @@ app.post('/webhook', (req, res) =>
         // Iterate over each entry - there may be multiple if batched
         body.entry.forEach(function (entry)
         {
-            // Get the message. entry.messaging is an array but only contain one message so we get at index [0]
-            let webhook_event = entry.messaging[0];
-            console.log(webhook_event);
-            
-            // Get the sender PSID
-            let sender_psid = webhook_event.sender.id;
-            console.log('Sender PSID: ' + sender_psid);
+            try
+            {
+                // Get the message. entry.messaging is an array but only contain one message so we get at index [0]
+                let webhook_event = entry.messaging[0];
+                console.log(webhook_event);
+
+                // Get the sender PSID
+                let sender_psid = webhook_event.sender.id;
+                console.log('Sender PSID: ' + sender_psid);
+            } catch (e)
+            {
+                console.log('Error: ', entry);
+            }
         });
 
         // Return a response '200' to all requests
