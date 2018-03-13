@@ -2,7 +2,6 @@
 
 const
     express = require('express'),
-    fs = require(fs),
     bodyParser = require('body-parser'),
     app = express().use(bodyParser.json()); // create Express HTTP server
 
