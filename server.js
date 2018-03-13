@@ -53,7 +53,7 @@ app.post('/webhook', (req, res) =>
                 }
             } catch (e)
             {
-                console.log(e);
+                console.log('Some error appeared');
                 return
             }
         });
