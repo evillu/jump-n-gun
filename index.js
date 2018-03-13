@@ -5,8 +5,11 @@ const
     bodyParser = require('body-parser'),
     app = express().use(bodyParser.json()); // create Express HTTP server
 
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+    ip = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || 'localhost';
+
 // Sets server port and log message on success
-app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
+app.listen(process.env.PORT || 1337, () => console.log(`webhook is listening on ${ip}:${port}`));
 
 // Create the endpoint for our webhook
 app.post('/webhook', (req, res) =>
@@ -59,3 +62,10 @@ app.get('/webhook', (req, res) =>
         }
     }
 })
+
+// Add homepage response
+app.get('/', (req, res) =>
+{
+    console.log('Say: Hello!')
+    res.status(200).send('Hello!');
+});
