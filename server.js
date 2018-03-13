@@ -6,10 +6,19 @@ const
     app = express().use(bodyParser.json()); // create Express HTTP server
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
-    ip = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || 'localhost';
+    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
+    mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
+    mongoURLLabel = "";
+
+app.engine('html', require('ejs').renderFile);
 
 // Sets server port and log message on success
 app.listen(port, ip, () => console.log(`webhook is listening on ${ip}:${port}`));
+
+app.get('/', function (req, res) {
+    console.log('Access Homepage')
+    res.render('index.html');
+});
 
 // Create the endpoint for our webhook
 app.post('/webhook', (req, res) =>
@@ -63,9 +72,4 @@ app.get('/webhook', (req, res) =>
     }
 })
 
-// Add homepage response
-app.get('/', (req, res) =>
-{
-    console.log('Say: Hello!')
-    res.status(200).send('Hello!');
-});
+module.exports = app ;
