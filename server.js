@@ -220,16 +220,14 @@ function handleGamePlay(sender_psid, received_gameplay)
                 "template_type": "generic",
                 "elements": [{
                     "title": "It has been a while since your last game. Time to get back.",
-                    "button": [
-                        {
-                            "type": "game_play",
-                            "title": "Play Again!",
-                            "payload": "{}",
-                            "game_metadata": {
-                                "context_id": contextId
-                            }
+                    "buttons": [{
+                        "type": "game_play",
+                        "title": "Play Tic-Tac-Toe.",
+                        "payload": "{}",
+                        "game_metadata": {
+                            "player_id": playerId
                         }
-                    ]
+                    }]
                 }]
             }
         }
