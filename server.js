@@ -155,7 +155,7 @@ function handleMessage(sender_psid, received_message) {
     request_body.message = response;
 
     // Sends the response message
-    callSendAPI(sender_psid, response);  
+    callSendAPI(request_body);  
 }
 
 // Handles messaging_postbacks events
@@ -190,7 +190,7 @@ function handlePostback(sender_psid, received_postback) {
     request_body.message = response;
 
     // Send the message to acknowledge the postback
-    callSendAPI(sender_psid, request_body);
+    callSendAPI(request_body);
 }
 
 // 
@@ -237,7 +237,7 @@ function handleGamePlay(sender_psid, received_gameplay)
     request_body.message = response;
     
     // Send the message to acknowledge the postback
-    callSendAPI(sender_psid, request_body);
+    callSendAPI(request_body);
 }
 
 // Sends response messages via the Send API
