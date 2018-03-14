@@ -57,7 +57,7 @@ app.post('/webhook', (req, res) =>
                 }
                 else if (webhook_event.game_play)
                 {
-                    handleGamePlay(sender_psid, webhook_event.gameplay);
+                    handleGamePlay(sender_psid, webhook_event.game_play);
                 }
             }
             catch (e)
@@ -208,6 +208,7 @@ function handleGamePlay(sender_psid, received_gameplay)
     // Collect gameplay data
     let gameId = received_gameplay.game_id;
     let playerId = received_gameplay.player_id;
+    let contextType = received_gameplay.context_type;
     let contextId = received_gameplay.context_id;
     let payload = received_gameplay.payload;
 
