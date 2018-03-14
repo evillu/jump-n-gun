@@ -222,7 +222,7 @@ function handleGamePlay(sender_psid, received_gameplay)
                     "title": "It has been a while since your last game. Time to get back.",
                     "buttons": [{
                         "type": "game_play",
-                        "title": "Play Tic-Tac-Toe.",
+                        "title": "Play Again!",
                         "payload": "{}",
                         "game_metadata": {
                             "player_id": playerId
