@@ -198,7 +198,7 @@ function handleGamePlay(sender_psid, received_gameplay)
 {
     let response;
     let request_body = {
-        "messaging_type": "UPDATE",
+        "messaging_type": "RESPONSE",
         "recipient": {
             "id": sender_psid
         },
